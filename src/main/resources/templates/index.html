@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.css}" />
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <script th:src="@{/webjars/momentjs/2.15.1/min/moment.min.js}"></script>
+    <script th:src="@{/webjars/lodash/4.15.0/lodash.min.js}"></script>
+    <script th:src="@{/webjars/handlebars/4.0.5/handlebars.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/styles/index.css}" />
+    <script th:src="@{/scripts/index.js}"></script>
+
+    <title>Title</title>
+
+    <script th:inline="javascript">
+        $(function(){
+            $(".botao-pesquisar").on( "click", ()=>buscaFilmes());
+
+            $(".campo-busca").keypress((e)=> {if(e.which == 13) buscaFilmes()});
+        });
+    </script>
+
+    <script id="template" type="text/x-handlebars-template">
+        {{#each this}}
+            <tr>
+                <td class="filme-cartaz"><img src="{{this.imagem}}" /></td>
+                <td>
+                    <div>
+                        <h3 class="filme-titulo">{{this.titulo}} ({{this.ano_lancamento}})<small class="filme-titulo-original">{{this.titulo_original}}</small></h3>
+                        <div class="filme-generos">
+                            {{#each this.generos}}
+                                <span class="label label-primary">{{this}}</span>
+                            {{/each}}
+                        </div>
+                        <div class="filme-overview lead">{{this.sinopse}}</div>
+                    </div>
+                </td>
+                <td class="acoes">
+                    <button type="button" class="btn btn-success btn-lg">Adicionar...</button>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <div id="message"></div>
+
+    <div class="barra-busca">
+        <div class="input-group">
+            <input type="text" class="form-control input-lg campo-busca" placeholder="Buscar por..." />
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-lg botao-pesquisar" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+        </div>
+    </div>
+
+
+    <table class="table filmes">
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

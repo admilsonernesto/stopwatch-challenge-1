@@ -1,0 +1,23 @@
+.barra-busca {
+    margin: 10px 0 20px;
+}
+
+table.filmes td.filme-cartaz {
+    vertical-align: middle;
+}
+
+table.filmes .filme-titulo {
+    font-size: 22px;
+}
+
+table.filmes .filme-overview {
+    font-size: 17px;
+}
+
+table.filmes .filme-generos {
+    margin: 0 0 10px 0;
+}
+
+table.filmes td.acoes {
+    vertical-align: middle;
+}
